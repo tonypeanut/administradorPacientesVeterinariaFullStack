@@ -1,9 +1,11 @@
 import Veterinario from "../models/Veterinario.js"
 import generarJWT from "../helpers/generarJWT.js";
 import generarId from "../helpers/generarId.js";
+import emailRegistro from "../helpers/emailRegistro.js";
+import emailOlvidePassword from "../helpers/emailOlvidePassword.js";
 
 const registrar = async (req, res) => {
-    const { email } = req.body;
+    const { email, nombre } = req.body;
 
     // Prevenir usuarios duplicados
     const existeUsuario = await Veterinario.findOne ({ email });
@@ -16,6 +18,10 @@ const registrar = async (req, res) => {
         // Guardar un Nuevo Teterinario
         const veterinario = new Veterinario(req.body);
         const veterinarioGuardado = await veterinario.save();
+
+        // Enviar el email
+        emailRegistro({email, nombre, token: veterinarioGuardado.token});
+
         res.json(veterinarioGuardado);
     } catch (error) {
         console.log(error)
@@ -87,6 +93,10 @@ const olvidePassword = async (req, res) => {
     try {
         existeVeterinario.token = generarId();
         await existeVeterinario.save();
+
+        // Enviar email con instrucciones
+        emailOlvidePassword({email, nombre: existeVeterinario.nombre, token: existeVeterinario.token})
+
         res.json({ msg: "Hemos enviado un email con las instrucciones"});
     } catch (error) {
         console.log(error);
@@ -112,6 +122,7 @@ const nuevoPassword = async (req, res) => {
     const { password } = req.body;
 
     const veterinario = await Veterinario.findOne({token});
+
     if(!veterinario){
         const error = new Error('Hubo un error.')
         return res.status(400).json({msg:error.message});
