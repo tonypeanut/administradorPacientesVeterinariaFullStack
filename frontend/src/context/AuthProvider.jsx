@@ -1,17 +1,22 @@
 import { useState, useEffect, createContext } from 'react'
 import clienteAxios from '../config/axios';
-import Alerta from '../components/Alerta';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
     const [auth, setAuth] = useState('');
-    const [alerta, setAlerta] = useState({});
+    const [cargando, setCargando] = useState(true);
+
+    
 
     useEffect(()=>{
         const autenticarUsuario = async () => {
             const token = localStorage.getItem('token');
-            if(!token) return;
+
+            if(!token){
+                setCargando(false);
+                return;
+            }
 
             const config = {
                 headers: {
@@ -24,16 +29,16 @@ const AuthProvider = ({children}) => {
                 const { data } = await clienteAxios('/veterinarios/perfil', config)
                 setAuth(data);
             } catch (error) {
-                console.log("hola")
-                setAlerta({msg:error.response.data.msg, error:true});
+                console.log(error.response.data.msg);
                 setAuth({});
             }
+            setCargando(false);
         }
         autenticarUsuario();
     }, [])
 
     return (
-        <AuthContext.Provider value={{auth, setAuth}}>
+        <AuthContext.Provider value={{auth, setAuth, cargando}}>
             {children}
         </AuthContext.Provider>
     )
