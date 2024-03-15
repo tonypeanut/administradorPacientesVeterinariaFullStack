@@ -29,12 +29,11 @@ function App() {
                     <Route path='olvide-password/:token' element={<NuevoPassword/>}/>
                     <Route path='confirmar/:id' element={<ConfirmarCuenta/>}/>
                 </Route>
-            </Routes>
 
-            <Routes>
                 <Route path='/admin' element={<RutaProtegida/>}>
                     <Route index element={<AdministrarPacientes/>}/>
                 </Route>
+                
             </Routes>
 
         </AuthProvider>
