@@ -25,7 +25,6 @@ const Login = () => {
       const { data } = await clienteAxios.post('/veterinarios/login', { email, password });
       localStorage.setItem('token', data.token);
       setAuth(data);
-      console.log(data);
       navigate('/admin');
     } catch (error) {
       setAlerta({msg: error.response.data.msg, error:true});
