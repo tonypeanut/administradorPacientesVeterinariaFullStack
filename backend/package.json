@@ -5,6 +5,7 @@
   "description": "Aprendiendo JS FullStack",
   "main": "index.js",
   "scripts": {
+    "build": "netlify deploy --prod",
     "start": "node index.js",
     "dev": "nodemon functions/index.js"
   },

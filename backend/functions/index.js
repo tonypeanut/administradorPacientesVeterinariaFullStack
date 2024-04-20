@@ -41,6 +41,6 @@ app.listen(4000, ()=>{
     console.log(`Servidor funcionando en el puerto ${PORT}`)
 })
 
-app.use('/.netlify/functions/server', router)
+app.use('/.netlify/functions/index', router)
 export const handler = serverless(app);
 
