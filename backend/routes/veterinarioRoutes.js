@@ -1,11 +1,12 @@
 import express from "express";
-import { registrar, perfil, confirmar, autenticar, olvidePassword, comprobarToken, nuevoPassword, actualizarPerfil, actualizarPassword } from '../controllers/veterinarioController.js'
+import { registrar, perfil, confirmar, autenticar, olvidePassword, comprobarToken, nuevoPassword, actualizarPerfil, actualizarPassword, test } from '../controllers/veterinarioController.js'
 import checkAuth from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 
 // área pública
+router.get("/test", test);
 router.post("/", registrar);
 router.get("/confirmar/:token", confirmar);
 router.post("/login", autenticar);

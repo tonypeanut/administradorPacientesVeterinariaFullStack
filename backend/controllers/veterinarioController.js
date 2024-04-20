@@ -198,6 +198,11 @@ const actualizarPassword = async (req, res) =>{
     // Almacenar el nuevo password
 }
 
+const test = async (req,res) =>{
+    
+    return res.json({msg: "Conexión exitosa"})
+}
+
 export {
     registrar,
     perfil,
@@ -207,5 +212,6 @@ export {
     comprobarToken,
     nuevoPassword,
     actualizarPerfil,
-    actualizarPassword
+    actualizarPassword,
+    test
 };
