@@ -199,8 +199,7 @@ const actualizarPassword = async (req, res) =>{
 }
 
 const test = async (req,res) =>{
-    
-    return res.json({msg: "Conexión exitosa"})
+    res.json({msg: "Conexión exitosa"})
 }
 
 export {
