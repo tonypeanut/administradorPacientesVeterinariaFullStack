@@ -3,3 +3,5 @@ function generarId() {
 }
 
 export default generarId;
+
+export { generarId };
