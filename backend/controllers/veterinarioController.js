@@ -198,7 +198,7 @@ const actualizarPassword = async (req, res) =>{
     // Almacenar el nuevo password
 }
 
-const test = async (req,res) =>{
+const test = async (req, res) =>{
     res.json({msg: "Conexión exitosa"})
 }
 
