@@ -25,8 +25,8 @@ const corsOptions = {
     }
 }
 
-//app.use(cors(corsOptions));
-app.use(cors());
+app.use(cors(corsOptions));
+//app.use(cors());
 
 app.use("/api/veterinarios", routerVeterinario);
 app.use("/api/pacientes", routerPacientes);
