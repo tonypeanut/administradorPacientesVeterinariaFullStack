@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from 'cors';
-import conectarDB from "../config/db.js";
+import { conectarDB } from "../config/db.js";
 import routerVeterinario from "../routes/veterinarioRoutes.js";
 import routerPacientes from "../routes/pacienteRoutes.js";
 import serverless from 'serverless-http'
