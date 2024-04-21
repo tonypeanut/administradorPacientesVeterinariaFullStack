@@ -2,20 +2,20 @@ import express from "express";
 import { registrar, perfil, confirmar, autenticar, olvidePassword, comprobarToken, nuevoPassword, actualizarPerfil, actualizarPassword, test } from '../controllers/veterinarioController.js'
 import checkAuth from "../middleware/authMiddleware.js";
 
-const router = express.Router();
+const routerVeterinario = express.Router();
 
 
 // área pública
-router.get("/test", test);
-router.post("/", registrar);
-router.get("/confirmar/:token", confirmar);
-router.post("/login", autenticar);
-router.post("/olvide-password", olvidePassword);
-router.route('/olvide-password/:token').get(comprobarToken).post(nuevoPassword);
+routerVeterinario.get("/test", test);
+routerVeterinario.post("/", registrar);
+routerVeterinario.get("/confirmar/:token", confirmar);
+routerVeterinario.post("/login", autenticar);
+routerVeterinario.post("/olvide-password", olvidePassword);
+routerVeterinario.route('/olvide-password/:token').get(comprobarToken).post(nuevoPassword);
 
 // área privada
-router.get("/perfil", checkAuth, perfil);
-router.put("/perfil/:id", checkAuth, actualizarPerfil)
-router.put("/actualizar-password", checkAuth, actualizarPassword)
+routerVeterinario.get("/perfil", checkAuth, perfil);
+routerVeterinario.put("/perfil/:id", checkAuth, actualizarPerfil)
+routerVeterinario.put("/actualizar-password", checkAuth, actualizarPassword)
 
-export default router;
+export default routerVeterinario;
