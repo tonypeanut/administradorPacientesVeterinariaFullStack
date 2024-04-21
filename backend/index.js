@@ -1,12 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from 'cors';
-import { conectarDB } from "../config/db.js";
-import routerVeterinario from "../routes/veterinarioRoutes.js";
-import routerPacientes from "../routes/pacienteRoutes.js";
-import serverless from 'serverless-http'
-
-const router = express.Router();
+import { conectarDB } from "./config/db.js";
+import routerVeterinario from "./routes/veterinarioRoutes.js";
+import routerPacientes from "./routes/pacienteRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -40,6 +37,4 @@ app.listen(PORT, ()=>{
     console.log(`Servidor funcionando en el puerto ${PORT}`)
 })
 
-app.use('/.netlify/functions/index', router)
-export const handler = serverless(app);
 
