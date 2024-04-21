@@ -4,10 +4,10 @@ import { agregarPaciente, obtenerPacientes, obtenerPaciente, actualizarPaciente,
 
 const routerPacientes = express.Router();
 
-//routerPacientes.route('/').post(checkAuth, agregarPaciente).get(checkAuth, obtenerPacientes);
-//routerPacientes.route('/:id')
-//    .get(checkAuth, obtenerPaciente)
-//    .put(checkAuth, actualizarPaciente)
-//    .delete(checkAuth, eliminarPaciente)
+routerPacientes.route('/').post(checkAuth, agregarPaciente).get(checkAuth, obtenerPacientes);
+routerPacientes.route('/:id')
+    .get(checkAuth, obtenerPaciente)
+    .put(checkAuth, actualizarPaciente)
+    .delete(checkAuth, eliminarPaciente)
 
 export default routerPacientes;
